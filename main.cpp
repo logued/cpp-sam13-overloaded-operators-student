@@ -10,17 +10,18 @@ using namespace std;
 
 int main()
 {
-    cout << "Demonstrates extraction operator>> , insertion operator<< and operator== for a Student class.\n" << endl;
+    cout << "Demonstrates stream extraction operator>> , insertion operator<< and operator== for a Student class.\n" << endl;
 
     Student s1( "John Stark", 56.4, -6.35);
-    cout << "s1:\n" << s1; // invoke insertion operator<<
+    cout << "s1:\n" << s1; // invoke stream insertion operator<<
 
-    Student s2; // default construction.
+    Student s2; // default construction.  Same as s2();
     cin >> s2;  // invokes the extraction operator>> to populate s2
     cout << "s2:\n" << s2;
 
-    // Using the overloaded equals operator==
-    // Change the values in s3 constructor one by one, and check that the == works correctly.
+    // Using the overloaded equals "operator=="
+    // To test, change the values in s3 constructor one by one,
+    // rerun, and check that the == works correctly.
     Student s3("John Stark", 56.4, -6.35);
 
     cout << "s3:\n" << s3;
@@ -34,9 +35,9 @@ int main()
 
     // When we exit main(), the Student objects that were automatically created on the stack
     // go out of scope and will be automatically freed one-by-one from the stack.
-    // Just before each student object is freed, its destructor will be automatically
+    // Just before each student object is freed, its destructor "~Student()" will be automatically
     // called.
     // The job of the destructor is to free the dynamically allocated memory pointed to by
     // the 'location' field pointer.  Again, the Student class must be responsible for freeing up
-    // any dynamically allocated memory.
+    // any dynamically allocated memory. (i.e. the Programmer is responsible for writing it!)
 }

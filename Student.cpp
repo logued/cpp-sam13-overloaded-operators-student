@@ -38,7 +38,7 @@ Student::~Student()
 
 // Overloading of the equality operator==
 //
-int Student::operator == (Student& otherStudent)
+int Student::operator == (const Student& otherStudent)
 {
     // compare this student's name with other student's name
     if (this->name != otherStudent.name)
@@ -69,14 +69,14 @@ int Student::operator == (Student& otherStudent)
 //
 ostream& operator<< (ostream& os, const Student& student)
 {
-    os << "Student details ( output by insertion operator<< )" << endl;
+    os << "Student details ( output by stream insertion operator<< )" << endl;
     os << "Name: " << student.name << endl;
     os << "Latitude: " << student.location[0] << endl;
     os << "Longitude: " << student.location[1] << endl << endl;
     return os;
 }
 
-// Extraction operator>> will read from cin and populate an existing Student class.
+// Extraction operator>> will read from cin stream and populate an existing Student class.
 // "Student::" is not used as a qualifier here because operator>>
 // is not a member function of Student, it is a global function.
 // In the Student class, it is declared as a "friend" of the Student class
@@ -90,8 +90,8 @@ istream& operator>> (istream& is, Student& student)
 {
     cout << "Enter student details ( this uses the overloaded extraction operator>> )" << endl;
     cout << "Enter name: ";
-    getline(is, student.name); // needed to read whole line (including spaces).
-    //is >> student.name;      // only works if there are no spaces in the inputted string.
+    getline(is, student.name); // needed to read whole line that may have spaces.
+    //is >> student.name;         // this works only if there are no spaces in the inputted string.
     cout << "Enter latitude: ";
     is >> student.location[0];
     cout << "Enter longitude: ";
